@@ -3,7 +3,7 @@ import { getSocket } from "../socket";
 
 const CONNECT_TO_ROOM = "1";
 
-const RoomList = ({ onJoinRoom }) => {
+const RoomList = () => {
   const [rooms, setRooms] = useState([]);
   const [loadingRoom, setLoadingRoom] = useState(null);
 
@@ -19,11 +19,11 @@ const RoomList = ({ onJoinRoom }) => {
       alert("Waiting for the second player to join...");
     });
 
-    socket.on("startGame", ({ opponent }) => {
-      alert(`Game started against ${opponent}`);
-      setLoadingRoom(null);
-      onJoinRoom();
-    });
+    // socket.on("startGame", ({ opponent }) => {
+    //   alert(`Game started against ${opponent}`);
+    //   setLoadingRoom(null);
+    //   onJoinRoom();
+    // });
 
     // socket.on("response", (data) => {
     //   if (data.action === GET_ROOMS) {
@@ -34,7 +34,7 @@ const RoomList = ({ onJoinRoom }) => {
 
     return () => {
     };
-  }, [onJoinRoom]);
+  }, []);
 
   const fetchRooms = async () => {
     try {

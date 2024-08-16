@@ -57,7 +57,7 @@ io.on("connection", (socket) => {
     } else {
       const player = Player.players.get(socket.id);
       if (player) {
-        player.messageHandler({ action, data: message });
+        await player.messageHandler({ action, data: message });
       } else {
         console.error(`No player found for socket: ${socket.id}`);
       }
