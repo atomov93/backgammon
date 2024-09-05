@@ -64,16 +64,6 @@ io.on("connection", (socket) => {
     }
   });
 
-  // socket.on("disconnect", () => {
-  //   console.log(`Client disconnected with socket ID: ${socket.id}`);
-  //   const player = Player.players.get(socket.id);
-  //   if (player) {
-  //     player.handleDisconnect();
-  //     Player.players.delete(socket.id); // Clean up player map
-  //   } else {
-  //     console.error(`No player found for socket disconnect: ${socket.id}`);
-  //   }
-  // });
 });
 
 app.get("/leaderboard", async (req, res) => {

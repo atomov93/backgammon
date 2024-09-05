@@ -1,5 +1,3 @@
-// Player.js
-
 const Logger = require("./Logger");
 const RoomModel = require("./models/Room");
 const User = require("./models/User");
@@ -15,7 +13,6 @@ class Player {
 		this.isRunning = true;
 
 		socket.on("disconnect", () => this.handleDisconnect());
-		socket.on("action", (data) => this.messageHandler(data));
 
 		this.logger.log(`Connection Established: ${socket.id}`);
 	}
@@ -54,15 +51,9 @@ class Player {
 				this.username = username;
 				await this.connectToRoom(roomName);
 				break;
-			// case "2": // GET_ROOMS
-			//   await this.sendAvailableRooms();
-			//   break;
 			case "6": // MOVE_PLAYED
 				await this.handleMove(message);
 				break;
-			// case "B": // CREATE_ROOM
-			//   await this.createRoom(message);
-			//   break;
 			default:
 				this.logger.log(`Player entered faulty input [ ${message} ]`);
 		}
@@ -93,8 +84,7 @@ class Player {
 		try {
 			console.log(`Searching for room with name: ${roomName}`);
 			let gameRoom = await RoomModel.findOne({ roomName: roomName });
-			// Or simply
-			// let gameRoom = await RoomModel.findOne({ roomName });
+
 			if (!gameRoom) {
 				gameRoom = new RoomModel({
 					roomName,
